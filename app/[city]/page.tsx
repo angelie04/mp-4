@@ -38,6 +38,7 @@ export default function CityP() {
         (url) =>
             fetch(url)
                 .then((res) => res.json())
+
     );
 
     // handle any errors
@@ -52,7 +53,8 @@ export default function CityP() {
             <button onClick={() => router.back()}>
                 ← Back
             </button>
-            <CityName>{params.city}</CityName>
+            {/*Allows spacing for city names with spaces (ex. New York*/}
+            <CityName>{decodeURIComponent(params.city as string)}</CityName>
             <WeatherContainer>
                 {
                     days.map((weather: Weather, i: number) =>

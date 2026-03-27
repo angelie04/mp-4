@@ -24,7 +24,8 @@ export async function GET(request:Request): Promise<NextResponse>{
     );
 
     if(res.status !== 200){
-        return NextResponse.json({error: "Failed to fetch data"}, {status:500});
+        return NextResponse.json( { error: "City not found... try another one!" },
+            { status: 404 });
     }
     // Parse the JSON data from the API response
     const data = await res.json();

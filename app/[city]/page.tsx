@@ -27,6 +27,12 @@ const WeatherContainer = styled.div`
     flex-wrap: wrap;
     justify-content: center;
 `;
+const FailedStyled= styled.p`
+    color: red;
+    text-align: center;
+    font-size: calc(30px + 0.9vw);
+    
+`
 
 export default function CityP() {
 
@@ -47,7 +53,19 @@ export default function CityP() {
 
     // get the 7 days, if can't find return array
     const days = data?.days || [];
-
+    if (data?.error) {
+        return <WeatherWrapper>
+            <button onClick={() => router.back()}>
+                ← Back
+            </button>
+            <CityName>
+            Failed to load, please go back...
+            </CityName>
+            <FailedStyled>
+                {params.city} 😢
+            </FailedStyled>
+        </WeatherWrapper>
+    }
     return (
         <WeatherWrapper>
             <button onClick={() => router.back()}>
